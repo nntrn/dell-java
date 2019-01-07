@@ -1,0 +1,39 @@
+//Ask the user for 2 numbers.
+//Print out the sum of the 2 numbers.
+//Print out the difference of the 2 numbers.
+//Print out the product of the 2 numbers.
+//Print out the quotient of the 2 number.
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// Declare the object and initialize with 
+        // predefined standard input object 
+        Scanner sc = new Scanner(System.in); 
+
+        double num1, num2 = 0.0;
+        
+        num1 = sc.nextDouble();
+  
+        System.out.println("Give me a bunch of numbers in a line (or 'exit')");
+        while (!sc.hasNext("exit")) {
+            Scanner lineSc = new Scanner(sc.nextLine());
+            int sum = 0;
+            while (lineSc.hasNextInt()) {
+                sum += lineSc.nextInt();
+            }
+            System.out.println("Sum is " + sum);
+        }
+        
+//        num2 = sc.nextDouble();
+//		
+//        System.out.println(num1 + num2);
+//        
+//		sc.close();
+		
+	}
+	
+
+}

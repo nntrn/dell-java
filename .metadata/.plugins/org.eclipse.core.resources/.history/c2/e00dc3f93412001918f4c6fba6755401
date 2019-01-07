@@ -1,0 +1,22 @@
+//Ask the user for 2 numbers.
+//Print out the sum of the 2 numbers.
+//Print out the difference of the 2 numbers.
+//Print out the product of the 2 numbers.
+//Print out the quotient of the 2 number.
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		System.out.println("Hello World!");
+		System.out.println("Please type a number to the console.");
+		Scanner reader = new Scanner(System.in);
+		int input = reader.nextInt();
+		System.out.println("You typed: " + input);
+		
+		
+		
+	}
+
+}
