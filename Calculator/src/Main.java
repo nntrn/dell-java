@@ -15,6 +15,7 @@ public class Main {
 	}
 
 	public static double getNumberInputs() {
+		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		System.out.println("enter value:");
 		
@@ -24,6 +25,7 @@ public class Main {
 			System.out.println("only double data types allowed");
 			sc.next();
 		}
+		
 		return sc.nextDouble();
 
 	}

@@ -1,5 +1,7 @@
 # Calculator
 
+[open .java file](src/Main.java)
+
 ## requirements: 
 
 Your calculator should
