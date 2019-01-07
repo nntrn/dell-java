@@ -4212,3 +4212,69 @@ java.lang.NoClassDefFoundError: org/eclipse/mylyn/commons/net/Policy$BackgroundP
 	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeRepositoriesJob.updateQueries(SynchronizeRepositoriesJob.java:187)
 	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeRepositoriesJob.run(SynchronizeRepositoriesJob.java:142)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.mylyn.tasks.core 4 0 2019-01-07 01:54:57.638
+!MESSAGE Synchronization for connector 'bugzilla' failed
+!STACK 0
+java.lang.NoClassDefFoundError: org/eclipse/mylyn/commons/net/Policy$BackgroundProgressMonitor
+	at org.eclipse.mylyn.commons.net.Policy.backgroundMonitorFor(Policy.java:70)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeQueriesJob.preSynchronization(SynchronizeQueriesJob.java:285)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeQueriesJob.run(SynchronizeQueriesJob.java:188)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeRepositoriesJob.updateQueries(SynchronizeRepositoriesJob.java:187)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeRepositoriesJob.run(SynchronizeRepositoriesJob.java:142)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.mylyn.tasks.core 4 0 2019-01-07 01:54:57.639
+!MESSAGE Synchronization for connector 'local' failed
+!STACK 0
+java.lang.NoClassDefFoundError: org/eclipse/mylyn/commons/net/Policy$BackgroundProgressMonitor
+	at org.eclipse.mylyn.commons.net.Policy.backgroundMonitorFor(Policy.java:70)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeQueriesJob.preSynchronization(SynchronizeQueriesJob.java:285)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeQueriesJob.run(SynchronizeQueriesJob.java:188)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeRepositoriesJob.updateQueries(SynchronizeRepositoriesJob.java:187)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeRepositoriesJob.run(SynchronizeRepositoriesJob.java:142)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.mylyn.tasks.core 4 0 2019-01-07 02:16:39.286
+!MESSAGE Synchronization for connector 'bugzilla' failed
+!STACK 0
+java.lang.NoClassDefFoundError: org/eclipse/mylyn/commons/net/Policy$BackgroundProgressMonitor
+	at org.eclipse.mylyn.commons.net.Policy.backgroundMonitorFor(Policy.java:70)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeQueriesJob.preSynchronization(SynchronizeQueriesJob.java:285)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeQueriesJob.run(SynchronizeQueriesJob.java:188)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeRepositoriesJob.updateQueries(SynchronizeRepositoriesJob.java:187)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeRepositoriesJob.run(SynchronizeRepositoriesJob.java:142)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.mylyn.tasks.core 4 0 2019-01-07 02:16:39.289
+!MESSAGE Synchronization for connector 'local' failed
+!STACK 0
+java.lang.NoClassDefFoundError: org/eclipse/mylyn/commons/net/Policy$BackgroundProgressMonitor
+	at org.eclipse.mylyn.commons.net.Policy.backgroundMonitorFor(Policy.java:70)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeQueriesJob.preSynchronization(SynchronizeQueriesJob.java:285)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeQueriesJob.run(SynchronizeQueriesJob.java:188)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeRepositoriesJob.updateQueries(SynchronizeRepositoriesJob.java:187)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeRepositoriesJob.run(SynchronizeRepositoriesJob.java:142)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.mylyn.tasks.core 4 0 2019-01-07 02:36:39.295
+!MESSAGE Synchronization for connector 'bugzilla' failed
+!STACK 0
+java.lang.NoClassDefFoundError: org/eclipse/mylyn/commons/net/Policy$BackgroundProgressMonitor
+	at org.eclipse.mylyn.commons.net.Policy.backgroundMonitorFor(Policy.java:70)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeQueriesJob.preSynchronization(SynchronizeQueriesJob.java:285)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeQueriesJob.run(SynchronizeQueriesJob.java:188)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeRepositoriesJob.updateQueries(SynchronizeRepositoriesJob.java:187)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeRepositoriesJob.run(SynchronizeRepositoriesJob.java:142)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.mylyn.tasks.core 4 0 2019-01-07 02:36:39.299
+!MESSAGE Synchronization for connector 'local' failed
+!STACK 0
+java.lang.NoClassDefFoundError: org/eclipse/mylyn/commons/net/Policy$BackgroundProgressMonitor
+	at org.eclipse.mylyn.commons.net.Policy.backgroundMonitorFor(Policy.java:70)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeQueriesJob.preSynchronization(SynchronizeQueriesJob.java:285)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeQueriesJob.run(SynchronizeQueriesJob.java:188)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeRepositoriesJob.updateQueries(SynchronizeRepositoriesJob.java:187)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeRepositoriesJob.run(SynchronizeRepositoriesJob.java:142)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
