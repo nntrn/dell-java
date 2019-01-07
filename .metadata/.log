@@ -4168,3 +4168,25 @@ Caused by: java.io.FileNotFoundException: /Users/annie/eclipse/java-2018-09/Ecli
 	at java.util.zip.ZipFile.<init>(ZipFile.java:169)
 	at org.eclipse.osgi.framework.util.SecureAction.getZipFile(SecureAction.java:307)
 	... 39 more
+
+!ENTRY org.eclipse.mylyn.tasks.core 4 0 2019-01-07 01:14:57.576
+!MESSAGE Synchronization for connector 'bugzilla' failed
+!STACK 0
+java.lang.NoClassDefFoundError: org/eclipse/mylyn/commons/net/Policy$BackgroundProgressMonitor
+	at org.eclipse.mylyn.commons.net.Policy.backgroundMonitorFor(Policy.java:70)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeQueriesJob.preSynchronization(SynchronizeQueriesJob.java:285)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeQueriesJob.run(SynchronizeQueriesJob.java:188)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeRepositoriesJob.updateQueries(SynchronizeRepositoriesJob.java:187)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeRepositoriesJob.run(SynchronizeRepositoriesJob.java:142)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.mylyn.tasks.core 4 0 2019-01-07 01:14:57.577
+!MESSAGE Synchronization for connector 'local' failed
+!STACK 0
+java.lang.NoClassDefFoundError: org/eclipse/mylyn/commons/net/Policy$BackgroundProgressMonitor
+	at org.eclipse.mylyn.commons.net.Policy.backgroundMonitorFor(Policy.java:70)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeQueriesJob.preSynchronization(SynchronizeQueriesJob.java:285)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeQueriesJob.run(SynchronizeQueriesJob.java:188)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeRepositoriesJob.updateQueries(SynchronizeRepositoriesJob.java:187)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeRepositoriesJob.run(SynchronizeRepositoriesJob.java:142)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
