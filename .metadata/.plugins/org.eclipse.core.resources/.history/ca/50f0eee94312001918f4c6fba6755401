@@ -1,5 +1,0 @@
-import java.util.Scanner;
-
-public class Calc {
-	System.out.println("Hello, welcome to the calculator. Please enter the first number:");
-}

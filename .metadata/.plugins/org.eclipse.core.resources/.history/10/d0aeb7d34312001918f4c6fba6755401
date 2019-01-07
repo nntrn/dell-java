@@ -1,7 +1,0 @@
-import java.util.Scanner;
-
-public class Calc {
-
-	System.out.println("provide calculator w/ two numbers, separate using a space ('exit' to close)");
-	
-}
