@@ -4810,3 +4810,25 @@ org.eclipse.core.runtime.CoreException: No file system is defined for scheme: ab
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1501)
 !SUBENTRY 1 org.eclipse.core.filesystem 4 566 2019-01-07 03:01:46.386
 !MESSAGE No file system is defined for scheme: about
+
+!ENTRY org.eclipse.mylyn.tasks.core 4 0 2019-01-07 03:16:39.356
+!MESSAGE Synchronization for connector 'bugzilla' failed
+!STACK 0
+java.lang.NoClassDefFoundError: org/eclipse/mylyn/commons/net/Policy$BackgroundProgressMonitor
+	at org.eclipse.mylyn.commons.net.Policy.backgroundMonitorFor(Policy.java:70)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeQueriesJob.preSynchronization(SynchronizeQueriesJob.java:285)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeQueriesJob.run(SynchronizeQueriesJob.java:188)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeRepositoriesJob.updateQueries(SynchronizeRepositoriesJob.java:187)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeRepositoriesJob.run(SynchronizeRepositoriesJob.java:142)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.mylyn.tasks.core 4 0 2019-01-07 03:16:39.358
+!MESSAGE Synchronization for connector 'local' failed
+!STACK 0
+java.lang.NoClassDefFoundError: org/eclipse/mylyn/commons/net/Policy$BackgroundProgressMonitor
+	at org.eclipse.mylyn.commons.net.Policy.backgroundMonitorFor(Policy.java:70)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeQueriesJob.preSynchronization(SynchronizeQueriesJob.java:285)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeQueriesJob.run(SynchronizeQueriesJob.java:188)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeRepositoriesJob.updateQueries(SynchronizeRepositoriesJob.java:187)
+	at org.eclipse.mylyn.internal.tasks.core.sync.SynchronizeRepositoriesJob.run(SynchronizeRepositoriesJob.java:142)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
