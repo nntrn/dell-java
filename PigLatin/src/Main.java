@@ -66,7 +66,7 @@ public class Main {
 
 	public static boolean isEnglishWord(String word) throws FileNotFoundException {
 
-		Set<String> dictionaryWords = readWords("words");
+		Set<String> dictionaryWords = readWords("words.txt");
 
 		if (!dictionaryWords.contains(word)) {
 			System.out.println("word does not exist in english dictionary");
