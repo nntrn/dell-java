@@ -4,18 +4,21 @@ import java.util.Arrays;
 
 public class main {
 	
+	public static String[] handMoves = {"rock", "paper", "scissors"};
+	
 	public static void main(String[] args) {
 
 		String user = getMoveForUser();
 		String comp = getMoveForComp();
-		System.out.println(user);
-
-
+		System.out.println("your move: " + user);
+		System.out.println("comp move: " + comp);
+		
+		getGameResults(user, comp);
 	}
 	
 	public static String getMoveForUser() {
-		String[] handMoves = {"rock", "paper", "scissors"};
 
+		System.out.println("rock, paper, or scissors?");
 		Scanner sc = new Scanner(System.in);
 		
 		String userMove = sc.next().toLowerCase();
@@ -30,19 +33,38 @@ public class main {
 	}
 	
 	public static String getMoveForComp() {
-		String[] handMoves = {"rock", "paper", "scissors"};
 
-		Scanner sc = new Scanner(System.in);
+		int random = (int)(Math.random() * 3 + 0);
+		// 2 is the maximum and the 0 is our minimum
+		System.out.println(random);
+		String compMove = handMoves[random];
 		
-		String userMove = sc.next().toLowerCase();
-		
-		// input check to prompt user for valid hand moves
-		while(!Arrays.stream(handMoves).anyMatch(userMove::equals))  {
-			System.out.println("need to be: rock, paper, or scissors");
-			userMove = sc.next().toLowerCase();
-		}
-		return userMove;
+		return compMove;
 		
 	}
+	public static void getGameResults(String u, String c) {
+
+        int resultMatrix[][] = {  // R  P  S
+        					/*R*/ { 0, -1,  1 }, 
+        					/*P*/ { 1,  0, -1 }, 
+        					/*S*/ {-1,  1,  0 } 
+        					}; 
+        
+        int userIndex = Arrays.asList(handMoves).indexOf(u);
+        int compIndex = Arrays.asList(handMoves).indexOf(c);
+        
+        int result = resultMatrix[userIndex][compIndex];
+       
+        		
+        if (result == 0)
+        	System.out.println("TIE");
+        
+        if (result == -1)
+        	System.out.println("COMP WINS");
+        
+        if (result == 1)
+        	System.out.println("USER WINS");
+
+	}	
 	
 }
