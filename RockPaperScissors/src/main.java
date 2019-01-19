@@ -36,7 +36,7 @@ public class main {
 
 		int random = (int)(Math.random() * 3 + 0);
 		// 2 is the maximum and the 0 is our minimum
-		System.out.println(random);
+
 		String compMove = handMoves[random];
 		
 		return compMove;
