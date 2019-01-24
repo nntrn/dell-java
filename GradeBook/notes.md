@@ -13,4 +13,5 @@
 * [Java HashMap Tutorial with Examples](https://www.callicoder.com/java-hashmap/)
 * [Collections](https://web.stanford.edu/class/archive/cs/cs108/cs108.1092/handouts/02SCollections.pdf)
 * [Exception Handling](http://web.cse.ohio-state.edu/cse1223/slides/09ExceptionHandling.pdf)
+* [resource for commenting](http://pages.cs.wisc.edu/~cs302/resources/guides/commenting.html#ClassHeader)
 
