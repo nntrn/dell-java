@@ -1,5 +1,12 @@
-/metadata/
-/recommenders/
-.recommenders
+# global Eclipse .gitignore configurations
 .metadata
-.settings
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
