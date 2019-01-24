@@ -70,10 +70,11 @@ class TicTacToe {
 	 */
 	public static boolean checkForWin(String player) {
 
-		String[] winMoves = { "0;1;2", "3;4;5", "6;7;8", // horizontal wins
-													"0;3;6", "1;4;7", "2;5;8", // vertical wins
-													"0;4;8", "2;4;6" 					 // diagonal win
-												};
+		String[] winMoves = { 
+			"0;1;2", "3;4;5", "6;7;8", // horizontal wins
+			"0;3;6", "1;4;7", "2;5;8", // vertical wins
+			"0;4;8", "2;4;6" // diagonal win
+		};
 
 		for (int i = 0; i < winMoves.length; i++) {
 
