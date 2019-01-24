@@ -1,12 +1,13 @@
 {
   "configurations": [
+    
     {
       "type": "java",
       "name": "CodeLens (Launch) - TicTacToe",
       "request": "launch",
       "mainClass": "TicTacToe",
       "projectName": "TicTacToe",
-      "externalConsole": true
+      "console": "integratedTerminal"
     }
   ]
 }
