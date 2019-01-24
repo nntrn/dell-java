@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map; 
@@ -39,35 +38,34 @@ public class GradeBook {
 			
 			Set<String> keys = gradebook.keySet();
 			studentName = renameDuplicateKeys(keys, studentName);
-	
 			// System.out.println(studentName);
 					
-			
-			boolean done = false;
 			Double avg = Double.valueOf(0);
 			System.out.println("input grades (use comma to separate)");
 			String grades = sc.nextLine();
-			while(!done) {
+			boolean isGradesValid = false;
+			
+			while(!isGradesValid) {
 				
 				try{
 					avg = Double.valueOf(calcAverage(grades));
-					done = true;
+					isGradesValid = true;
 				}
 				catch (NumberFormatException e) {
-					System.out.println("error occured, re-enter grades for "+ studentName);
+					System.out.println("error occured >> re-enter grades for " + studentName);
 					grades = sc.nextLine();
 				}
 				
 			}
 
-			
 			System.out.println(avg);
 			gradebook.put(studentName, grades);
+			studentAvgGrade.put(studentName, avg);
 			
 		}
 		
 		System.out.println(gradebook);
-		
+		System.out.println(studentAvgGrade);
 		
 	}
 	
@@ -89,9 +87,7 @@ public class GradeBook {
 	public static Double calcAverage(String list) {
 		
 		int[] numbers = Arrays.stream(list.split(",")).mapToInt(Integer::parseInt).toArray();
-		
 		Double avg = Arrays.stream(numbers).average().orElse(Double.NaN);
-		System.out.println(avg);
 		return avg;
 	}
 	
