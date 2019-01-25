@@ -8,7 +8,6 @@ import java.util.Set;
  * The GradeBook class implements an application that stores, calculates, and
  * iterates grades for students
  */
-
 public class GradeBook {
 
 	public static Map<String, String> gradebook = new HashMap<String, String>();
@@ -27,7 +26,8 @@ public class GradeBook {
 		inputGradebook(Integer.parseInt(numberOfStudents));
 
 		System.out.println("\ngrade averages:\n");
-		// iterate over the HashMap's entrySet using forEach and lambda
+
+		// iterate over the HashMap's entrySet
 		studentAvgGrade.entrySet().forEach(student -> {
 			System.out.println(student.getKey() + " => " + String.format("%.2f", student.getValue()));
 		});
@@ -56,7 +56,7 @@ public class GradeBook {
 			Double avg = Double.valueOf(0);
 			System.out.println("input grades (use comma to separate)");
 			String grades = sc.nextLine();
-			
+
 			boolean isGradesValid = false;
 
 			while (!isGradesValid) {
@@ -86,7 +86,7 @@ public class GradeBook {
 	 */
 	public static String renameDuplicateKeys(Set<String> keys, String name) {
 		int counter = 1;
-
+		
 		for (String key : keys) {
 			if (key.contains(name))
 				counter++;

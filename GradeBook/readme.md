@@ -1,6 +1,8 @@
 Gradebook Assignment
 ----------------------
 
+[view code](src/GradeBook.java)
+
 For this assignment we will be creating a simple gradebook program.
 
 Requirements: 
