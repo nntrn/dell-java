@@ -1,5 +1,5 @@
 # https://github.com/github/gitignore/blob/master/Global/Eclipse.gitignore
-.vscode
+
 .metadata
 bin/
 tmp/
@@ -11,6 +11,7 @@ local.properties
 .settings/
 .loadpath
 .recommenders
+*.classpath
 
 # External tool builders
 .externalToolBuilders/
@@ -55,4 +56,3 @@ local.properties
 .cache-main
 .scala_dependencies
 .worksheet
->>>>>>> c8e29547bef67602044dd4985aeed73224bb69ac
