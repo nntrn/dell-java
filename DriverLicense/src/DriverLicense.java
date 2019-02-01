@@ -1,5 +1,7 @@
+import java.lang.reflect.Field;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Arrays;
-import java.time.*;
 
 /**
  * this DriverLicense class initial
@@ -7,40 +9,81 @@ import java.time.*;
  */
 public class DriverLicense {
 
-	private String fname;
-	private String lname;
+	private String firstName;
+	private String lastName;
 	private String dob;
 	private String height;
 	private String gender;
 
 	/**
-	 * returns null if first or last names are missing
+	 * returns full name and displays null for missing last names
 	 * 
 	 */
 	public String getFullName() {
-
-		if (fname == null || lname == null)
-			return null;
-
-		return fname + " " + lname;
+		return firstName + " " + lastName;
 	}
 
 	/**
-	 * returns age if correct date format is used: MM/DD/YYYY otherwise -1 is
-	 * returned 
-	 * TODO: return correct years when MM/DD/YY is used
+	 * returns age if correct date format is used: MM/DD/YYYY, otherwise -1 is
+	 * returned 999 is returned for missing DOB and exceptions
 	 * 
 	 */
 	public int getAge() {
+		String printException = "";
 		try {
 			int[] arr = Arrays.stream(dob.split("/")).mapToInt(Integer::parseInt).toArray();
 			LocalDate birthday = LocalDate.of(arr[2], arr[0], arr[1]);
 
-			return Period.between(birthday, LocalDate.now()).getYears();
+			if (arr[0] <= 12 && arr[1] <= 31 && arr[2] >= 1900)
+				return Period.between(birthday, LocalDate.now()).getYears();
+			return -1;
 
 		} catch (Exception e) {
-			return -1;
+			printException = "\f";
+			printException += e.toString().split("\\.")[2].toString() + "\n\f";
+			return 999;
+		} finally {
+			if (printException != null)
+				System.out.print(printException);
 		}
+	}
+	
+	/**
+	 * returns full name and age 
+	 * 
+	 */
+	public void print() {
+		System.out.println("name: " + getFullName());
+		System.out.println("age: " + getAge());
+		System.out.println("------------------------");
+	}
+	
+	/**
+	 * returns specified attributes
+	 * 
+	 * @param items String of class attributes separated by a semicolon ';' to print
+	 */
+	public void print(String items) {
+
+		String[] arr = items.toLowerCase().replace(" ", "").split(";");
+
+		Arrays.asList(arr).forEach(e -> {
+			if (e.contains("name")) // accepts firstName, lastName, fullname, full name
+				System.out.println("name: " + getFullName());
+		});
+
+		if (Arrays.asList(arr).indexOf("age") > -1)
+			System.out.println("age: " + getAge());
+		
+		// exception handling for undeclared attributes
+		for (Field attr : this.getClass().getDeclaredFields()) {
+			try {
+				if (Arrays.asList(arr).indexOf(attr.getName()) > 1)
+					System.out.println(attr.getName() + ": " + attr.get(this));
+			} catch (Exception e) {
+			} // silently ignore
+		}
+		System.out.println("------------------------");
 
 	}
 
@@ -50,8 +93,8 @@ public class DriverLicense {
 	 */
 	public static class Builder {
 
-		private String fname;
-		private String lname;
+		private String firstName;
+		private String lastName;
 		private String dob;
 		private String height;
 		private String gender;
@@ -59,13 +102,13 @@ public class DriverLicense {
 		public Builder() {
 		}
 
-		public Builder setFirstName(String fname) {
-			this.fname = fname;
+		public Builder setFirstName(String firstName) {
+			this.firstName = firstName;
 			return this;
 		}
 
-		public Builder setLastName(String lname) {
-			this.lname = lname;
+		public Builder setLastName(String lastName) {
+			this.lastName = lastName;
 			return this;
 		}
 
@@ -88,8 +131,8 @@ public class DriverLicense {
 
 			DriverLicense dl = new DriverLicense();
 
-			dl.fname = this.fname;
-			dl.lname = this.lname;
+			dl.firstName = this.firstName;
+			dl.lastName = this.lastName;
 			dl.dob = this.dob;
 			dl.height = this.height;
 			dl.gender = this.gender;
