@@ -1,6 +1,6 @@
 # Rock Paper Scissors Assignment
 
-[HW3: Boolean, Logic & Conditionals]()
+[HW3: Boolean, Logic & Conditionals](src/main.java)  
 [HW8: Exceptions](src/Exceptions)
 
 For this assignment we will create a program can play "Rock Paper Scissors".
@@ -41,7 +41,6 @@ For this assignment we will updating the Rock Paper Scissors program to use try/
 
 ---
 
-
 ## Notes
 
 ### using switch or if statements for `getGameResults()`
@@ -70,7 +69,7 @@ switch (result) {
 }
  ```
 
- Prefer switch if the number of cases are more than 5 otherwise, you may use if-else too<sup>[1](#switch-vs-if)</sup>
+Prefer switch if the number of cases are more than 5 otherwise, you may use if-else too<sup>[1](#switch-vs-if)</sup>
 
 
 #### 1. Using Math.random()
@@ -87,18 +86,28 @@ int random = (int )(Math.random() * 50 + 1);
 >
 > `random()` method returns a random number between 0.0 and 0.9..., you multiply it by 50, so upper limit becomes 0.0 to 49.999... when you add 1, it becomes 1.0 to 50.999..., now when you truncate to int, you get 1 to 50
 
-<small>**source**: [a/5887736](https://stackoverflow.com/a/5887736) by @zengr on stackoverflow</small>
+<small>
+
+**source**: [a/5887736](https://stackoverflow.com/a/5887736) by @zengr on stackoverflow
+
+</small>
 
 #### 2. Using Random class in Java.
-```java
-Random rand = new Random(); 
-int value = rand.nextInt(50); 
-```
-This will give value from 0 to 49.
 
-For 1 to 50: `rand.nextInt((max - min) + 1) + min;`
+	int min = 1;
+	int max = 50;
 
-Source of some Java Random awesomeness.
+This will give value from 0 to 49:
+
+	Random rand = new Random(); 
+	int value = rand.nextInt(max); 
+
+
+For 1 to 50: 
+
+	int value = rand.nextInt((max - min) + 1) + min;
+
+
 
 ## footnotes
 
