@@ -5,7 +5,9 @@ Driver's License Assignment
 
 For this assignment we will create a class that represents a driver's license.
 
-### [](https://java.austincodingacademy.com/_book/lesson09/driver-license.html#requirements)Requirements
+---
+
+Requirements:
 
 1.  Create a `DriversLicense` Java project with two classes, `DriversLicense` and `LicenseProgram`.
 
