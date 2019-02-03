@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 /**
  * represents a car
@@ -10,56 +11,85 @@ public class Car {
 	String model;
 
 	/**
-	 * this is the constructor of the class Car
+	 * this is the constructor of the class car
+	 * 
+	 * @param license String containing the license plate number
 	 */
 	public Car(String license) {
 		this.license = license.toUpperCase();
 	}
 
-	/**
-	 * assigns color to car
-	 */
 	public void color(String carColor) {
-		color = carColor;
+		this.color = carColor;
 	}
 
-	/**
-	 * assign car make
-	 */
 	public void make(String carMake) {
-		make = carMake;
+		this.make = carMake;
 	}
 
-	/**
-	 * assign car model
-	 */
 	public void model(String carModel) {
-		model = carModel;
+		this.model = carModel;
 	}
 
-	/**
-	 * Print the Car details
-	 */
-	public void printCar() {
-		System.out.print(license + ", ");
-		System.out.print(color + ", ");
-		System.out.print(make + ", ");
-		System.out.print(model + ", ");
+	
+	public String[] carInfo() {
+		String[] car = { license, color, make, model };
+		return car;
+
 	}
 }
 
 /**
  * represent available parking spots
  */
-class ParkingGarage{
-	
+class ParkingGarage {
+
 	int capacity = 10;
-	
+	Car[] parkingSpots = new Car[capacity];
+	String[] carArray = new String[capacity];
+
 	public ParkingGarage() {
-		this.capacity = this.capacity -1;
-		System.out.print(capacity);
+		parkingSpots = new Car[capacity];
 	}
 
-	
-}
+	public ParkingGarage(int setCapacity) {
+		this.capacity = setCapacity;
+		parkingSpots = new Car[this.capacity];
+	}
 
+	public boolean checkParking(int spot) {
+		if(this.parkingSpots[spot]==null)
+			return true;
+		return false;
+	}
+	
+	public void park(Car car, int spot) {
+		// TODO: error handling for unresolved cars
+		
+		try {
+			if(checkParking(spot) ) {
+				this.parkingSpots[spot] = car;
+				this.carArray[spot] = Arrays.deepToString(car.carInfo());
+				
+				System.out.println(car.license + " parked in S"+spot);
+			}
+			else {
+				System.out.println("\t--"+car.license+": S" +spot+" is already taken ");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("\terror: can not park at S"+spot);
+		}
+
+	}
+	
+	public void printInventory() {
+
+		System.out.println("\n\n");
+		for (int i = 0; i < this.carArray.length; i++)
+			System.out.println("S" + i + " => " + this.carArray[i]);
+
+	}
+	
+
+}
