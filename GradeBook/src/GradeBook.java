@@ -77,7 +77,7 @@ public class GradeBook {
 	}
 
 	/**
-	 * returns name with id for duplicated key values
+	 * checks for name uniqueness and appends occurrence index for duplicated names
 	 * 
 	 * @param keys set of all the keys in the map (.keySet())
 	 * @param name user input for key
@@ -86,7 +86,7 @@ public class GradeBook {
 	 */
 	public static String renameDuplicateKeys(Set<String> keys, String name) {
 		int counter = 1;
-		
+
 		for (String key : keys) {
 			if (key.contains(name))
 				counter++;

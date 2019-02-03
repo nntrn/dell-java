@@ -12,6 +12,7 @@ local.properties
 .loadpath
 .recommenders
 *.classpath
+.hidden/
 
 # External tool builders
 .externalToolBuilders/

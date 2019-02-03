@@ -6,7 +6,7 @@ java notes for [GradeBook](../Gradebook/src/Gradebook.java)
 ## Choose the right Java Map interface
 
 **HashMap**
-* use this implementation if the order of items while iterating is not important to you
+* use this implementation if the `order` of items while iterating is not important to you
 * HashMap has better performance compared to TreeMap and LinkedHashMap
 
 > **Key Point’s of HashMap class:**
@@ -50,7 +50,7 @@ java notes for [GradeBook](../Gradebook/src/Gradebook.java)
 ### Using for each to iterate through a HashMap</summary>
 <mark>This is the advised approach.</mark> It gives you full control over the keys and values in the map. With this approach you actually iterate through the EntrySet of the map and you get the key and value of each entry inside the loop.
 
-<pre>
+```java
 import java.util.HashMap;
 import java.util.Map;
 public class IterateHashMap {
@@ -63,7 +63,7 @@ public class IterateHashMap {
 		}
 	}
 }
-</pre>
+```
 
 </details>
 

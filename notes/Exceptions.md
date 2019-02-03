@@ -27,15 +27,15 @@ try {
 2.  The finally clause is optional.
 3.  In general, there can be one or more catch clauses. If there *is* a finally clause, there can be zero catch clauses.
 
-| Built-in Exceptions | Description |
-| --| -- |
-| *ArithmeticException* | It is thrown when an exceptional condition has occurred in an arithmetic operation. |
+| Built-in Exceptions              | Description                                                                                                                                                     |
+| -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| *ArithmeticException*            | It is thrown when an exceptional condition has occurred in an arithmetic operation.                                                                             |
 | *ArrayIndexOutOfBoundsException* | It is thrown to indicate that an array has been accessed with an illegal index. The index is either negative or greater than or equal to the size of the array. |
-| *ClassNotFoundException* | This exception is raised when we try to access a class whose definition is not found. |
-| *FileNotFoundException* | An exception that is raised when a file is not accessible or does not open. |
-| *IOException* | It is thrown when an input-output operation is failed or interrupted. |
-| *InterruptedException* | It is thrown when a thread is waiting, sleeping, or doing some processing, and it is interrupted. |
-| *NoSuchFieldException* | It is thrown when a class does not contain the field (or variable) specified. |
+| *ClassNotFoundException*         | This exception is raised when we try to access a class whose definition is not found.                                                                           |
+| *FileNotFoundException*          | An exception that is raised when a file is not accessible or does not open.                                                                                     |
+| *IOException*                    | It is thrown when an input-output operation is failed or interrupted.                                                                                           |
+| *InterruptedException*           | It is thrown when a thread is waiting, sleeping, or doing some processing, and it is interrupted.                                                               |
+| *NoSuchFieldException*           | It is thrown when a class does not contain the field (or variable) specified.                                                                                   |
 
 
 
