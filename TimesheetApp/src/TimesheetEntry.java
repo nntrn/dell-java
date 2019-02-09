@@ -21,7 +21,7 @@ public class TimesheetEntry {
 		this.startTime = LocalDateTime.now();
 		this.id = NEXTID;
 		NEXTID++;
-		printEntry();
+		printAddEntry();
 	}
 	
 	public String getProjectName() {
@@ -56,34 +56,34 @@ public class TimesheetEntry {
 			System.out.println("--error setting end time for " + this.projectName);
 		}
 		
-		printEntry();
+		printAddEntry();
 	}
 	public void updateEndTime() {
+		// TODO THROW EXCEPTION IF END TIME IS ALREADY SET
 		
 		if(this.endTime == null) {
 			this.endTime = LocalDateTime.now();
+			System.out.println("--end time updated for entry " + getId());
 		}
-		printEntry();
+		else {
+			System.out.println("--error: existing end time for entry " + getId());
+		}
+		
 	}
 	
-	public void printEntry() {
-		// TODO remember to remove this later ????
-		System.out.println(
-				"#" + this.id + " " +
-				this.projectName + " " + 
-				this.task + " \nstart:" + 
-				this.startTime + " \nend:" + 
-				this.endTime + "\n");	
+	public void printAddEntry() {
+		String str = String.join(" ", this.projectName, "has been added", this.startTime.toString());
+		System.out.println(id + " " + str);	
 	}
 }
 
 class Timesheet {
 	
 	private List<TimesheetEntry> database;
-	private List<TimesheetEntry> entries = new ArrayList<>(); // TODO DELETE THIS LATER
+	private List<TimesheetEntry> activeEntries = new ArrayList<>();
+	private List<TimesheetEntry> projectEntries = new ArrayList<>();
 	
-	private List<TimesheetEntry> testDatabaseEntries = new ArrayList<>(entries); // TODO DELETE THIS LATER
-	
+
 	public Timesheet() {
 		this.database = new ArrayList<>();
 	}
@@ -95,21 +95,59 @@ class Timesheet {
 		
 		TimesheetEntry newEntry = new TimesheetEntry(project.replace(" ", ""), task);
 		database.add(newEntry);
-		entries.add(newEntry); // TODO DELETE LATER
 		
 	}
-	public void remove(int id) {
-		// TODO: FIGURE OUT WHY THIS DOESNT REMOVE ANYTHING
-		TimesheetEntry removeThis =findId(id);
-		database.remove(removeThis);
-		entries.remove(removeThis);// TODO DELETE LATER
+	public void delete(int id) {
+	
+		TimesheetEntry removeThis = findId(id);
 		
+		if(removeThis != null) {
+			database.remove(removeThis);
+			System.out.println("--removed entry " + removeThis.getId());
+		}
 	}
-	public List<TimesheetEntry> list() {
+	public void stop(int id) {
+		
+		TimesheetEntry updateThis = findId(id);
 
-		//System.out.println(this.database);
-		return this.database;		
+		if(updateThis != null) {
+			
+			updateThis.updateEndTime();
+			database.set(getIndex(id), updateThis);
+			
+		}
+	}
+	
+	
+	public List<TimesheetEntry> list(boolean activeOnly, String name) {
 
+		projectEntries = new ArrayList<>();
+		
+		for(TimesheetEntry entry:database) {
+			if(entry.getProjectName().indexOf(name) > -1) {
+				projectEntries.add(entry);
+			}
+		}
+		
+		if(name.equals("-a") || name.isEmpty())
+			projectEntries = database;
+
+
+		if(activeOnly) {
+			
+			activeEntries = new ArrayList<>();
+		
+			for(TimesheetEntry entry:projectEntries) {
+				if(entry.getEndTime() == null)
+					activeEntries.add(entry);
+			}
+				
+			return this.activeEntries;
+		}
+		else {
+			return this.projectEntries;
+		}
+	
 	}
 	
 	public TimesheetEntry findId(int id) {
@@ -119,9 +157,21 @@ class Timesheet {
 				return entry;
 			}
 		}
-		
+		System.out.println("--error: no entry with id "+ id);
 		return null;
+	}
+
+	public int getIndex(int id) {
+		int counter = 0;
+		for(TimesheetEntry entry:database) {
+			
+			if(entry.getId()==id) {
+				return counter;
+			}
+			counter++;
+		}
 		
+		return -1;
 	}
 	
 

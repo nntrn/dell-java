@@ -23,6 +23,40 @@ public class Controller {
 
         consoleUtils.printHelp(); // Print the action menu
 
+        // TEST ENTRIES MEANT FOR TESTING PROGRAM ONLY -----------------------//
+	        
+	        this.timesheet.add("nntrn", "consectetur adipiscing elit");
+	        this.timesheet.add("mspagon", "dolor sit amet, consectetur");
+	        this.timesheet.add("mspagon", "Lorem ipsum dolor sit amet");
+	        this.timesheet.add("nntrn", "consectetur adipiscing elit");
+	        this.timesheet.add("mspagon", "dolor sit amet, consectetur");
+	        this.timesheet.add("nntrn", "Lorem ipsum dolor sit amet");
+	        
+	        String testArr[][] = {
+	        		{"list"},
+	        		{"list", "-a"},
+	        		{"list", "nntrn", "-a"},
+	        		{"list", "mspagon", "-a"},
+	        		{"list", "mspagon"},
+	        		{"stop","1"}, 
+	        		{"stop","2"},
+	        		{"stop"}
+	        		
+	        		};
+	        
+	        processStopAction(testArr[5]);
+	        processStopAction(testArr[6]);
+	        processStopAction(testArr[7]);
+	      
+	        processListAction(testArr[0]);
+	        processListAction(testArr[1]);
+	        processListAction(testArr[2]);
+	        processListAction(testArr[3]);
+	        processListAction(testArr[4]);
+
+        	
+        // -----------------------------------------------------------//
+        
         boolean quit = false;
         while(!quit) {
 
@@ -37,20 +71,27 @@ public class Controller {
                 processAddAction();
 
             } else if (action.equals("delete")) {
+            	
+            	if(input.matches(".*\\s\\d*"))
+            		 processDeleteAction(actionParts);
+            	
+            	else {
+            		System.out.println("invalid delete entry");
+            	}
 
-                processDeleteAction(actionParts);
-
+               
             } else if (action.equals("stop")) {
 
                 processStopAction(actionParts);
 
             } else if (action.equals("list")) {
-
+            	
                 processListAction(actionParts);
 
             } else if (action.equals("quit")) {
 
               quit = true;
+              break;
 
             } else if (action.equals("help")) {
 
@@ -66,6 +107,7 @@ public class Controller {
                 
             }
         }
+        System.out.println("--end");
 
     }
 
@@ -79,10 +121,15 @@ public class Controller {
             consoleUtils.error("Too many inputs to stop command");
             return;
         }
+        
+        if(actionParts.length != 2){
+            consoleUtils.error("specify id");
+            return;
+        }
 
-        int id = Integer.parseInt(actionParts[1]);
+		int id = Integer.parseInt(actionParts[1]);
+		timesheet.stop(id);
 
-		// Your code here
     }
 
 	/*
@@ -95,11 +142,14 @@ public class Controller {
             consoleUtils.error("Too many inputs to delete command");
             return;
         }
+        if(actionParts.length != 2){
+            consoleUtils.error("specify id");
+            return;
+        }
 
         int id = Integer.parseInt(actionParts[1]);
+        timesheet.delete(id);	
         
-     
-		//TODO https://www.geeksforgeeks.org/remove-element-arraylist-java/
     }
 
 	/*
@@ -114,8 +164,23 @@ public class Controller {
             return;
         }
         
-        List<TimesheetEntry> list = timesheet.list();
-        consoleUtils.printList(list);
+        boolean printActive = false;
+        String project = "";
+        
+        String listString = String.join(" ", actionParts);
+        
+        if(actionParts.length > 1) {
+        	System.out.println(actionParts[1]);
+        	if(listString.contains("-a"))
+        		printActive = true;
+        	
+        	project = actionParts[1];
+        }
+        
+        List<TimesheetEntry> list = timesheet.list(printActive, project);
+        consoleUtils.printList(list);	
+        
+        
     }
 
 	/*
