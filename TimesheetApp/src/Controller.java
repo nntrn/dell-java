@@ -97,8 +97,9 @@ public class Controller {
         }
 
         int id = Integer.parseInt(actionParts[1]);
-		
-		// Your code here
+        
+     
+		//TODO https://www.geeksforgeeks.org/remove-element-arraylist-java/
     }
 
 	/*
@@ -112,8 +113,9 @@ public class Controller {
             consoleUtils.error("Too many inputs to list command");
             return;
         }
-
-		timesheet.list();
+        
+        List<TimesheetEntry> list = timesheet.list();
+        consoleUtils.printList(list);
     }
 
 	/*

@@ -95,15 +95,35 @@ class Timesheet {
 		
 		TimesheetEntry newEntry = new TimesheetEntry(project.replace(" ", ""), task);
 		database.add(newEntry);
-		entries.add(newEntry);
+		entries.add(newEntry); // TODO DELETE LATER
+		
+	}
+	public void remove(int id) {
+		// TODO: FIGURE OUT WHY THIS DOESNT REMOVE ANYTHING
+		TimesheetEntry removeThis =findId(id);
+		database.remove(removeThis);
+		entries.remove(removeThis);// TODO DELETE LATER
 		
 	}
 	public List<TimesheetEntry> list() {
 
-		System.out.println(this.database);
+		//System.out.println(this.database);
 		return this.database;		
 
 	}
+	
+	public TimesheetEntry findId(int id) {
+		
+		for(TimesheetEntry entry:database) {
+			if(entry.getId()==id) {
+				return entry;
+			}
+		}
+		
+		return null;
+		
+	}
+	
 
 }
 
