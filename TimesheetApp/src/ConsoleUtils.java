@@ -45,8 +45,7 @@ public class ConsoleUtils {
 	 * Prints an error message to the console
 	 */
     public void error(String msg){
-        System.out.println("[ERROR: "+msg+"]");
-        System.out.println();
+        System.out.println("--error: "+msg);
         }
 
 	/*

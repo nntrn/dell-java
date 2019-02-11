@@ -14,7 +14,6 @@ public class TimesheetEntry {
 	private static int NEXTID = 1;
 	
 	public TimesheetEntry(String myProject, String myTask) {
-		// TODO: FIGURE OUT WHAT myTASK IS FOR
 		
 		this.projectName = myProject;
 		this.task = myTask;
@@ -48,6 +47,7 @@ public class TimesheetEntry {
 	 * would be "2019, 2, 8, 2, 30"
 	 */
 	public void setEndTime(String time) {
+		
 		try {
 			int[] arr = Arrays.stream(time.replace(" ", "").split(",")).mapToInt(Integer::parseInt).toArray();
 			this.endTime = LocalDateTime.of(arr[0], arr[1], arr[2], arr[3], arr[4]);
@@ -111,10 +111,8 @@ class Timesheet {
 		TimesheetEntry updateThis = findId(id);
 
 		if(updateThis != null) {
-			
 			updateThis.updateEndTime();
 			database.set(getIndex(id), updateThis);
-			
 		}
 	}
 	
@@ -131,7 +129,6 @@ class Timesheet {
 		
 		if(name.equals("-a") || name.isEmpty())
 			projectEntries = database;
-
 
 		if(activeOnly) {
 			

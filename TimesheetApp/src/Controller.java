@@ -31,6 +31,7 @@ public class Controller {
 	        this.timesheet.add("nntrn", "consectetur adipiscing elit");
 	        this.timesheet.add("mspagon", "dolor sit amet, consectetur");
 	        this.timesheet.add("nntrn", "Lorem ipsum dolor sit amet");
+	        this.timesheet.add("reallyreallylong", "Lorem ipsum dolor sit amet");
 	        
 	        String testArr[][] = {
 	        		{"list"},
@@ -40,14 +41,19 @@ public class Controller {
 	        		{"list", "mspagon"},
 	        		{"stop","1"}, 
 	        		{"stop","2"},
-	        		{"stop"}
+	        		{"stop"},
+	        		{"stop", "99"}
 	        		
 	        		};
 	        
 	        processStopAction(testArr[5]);
+	        processStopAction(testArr[5]); // time has already been set
 	        processStopAction(testArr[6]);
-	        processStopAction(testArr[7]);
-	      
+	        processStopAction(testArr[7]); // need to specify id
+	        processStopAction(testArr[8]); // does not exist
+	        
+	        System.out.println("\n\n\n");
+	        
 	        processListAction(testArr[0]);
 	        processListAction(testArr[1]);
 	        processListAction(testArr[2]);
@@ -170,7 +176,7 @@ public class Controller {
         String listString = String.join(" ", actionParts);
         
         if(actionParts.length > 1) {
-        	System.out.println(actionParts[1]);
+        	System.out.println(listString);
         	if(listString.contains("-a"))
         		printActive = true;
         	
@@ -179,7 +185,6 @@ public class Controller {
         
         List<TimesheetEntry> list = timesheet.list(printActive, project);
         consoleUtils.printList(list);	
-        
         
     }
 

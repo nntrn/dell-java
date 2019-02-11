@@ -58,7 +58,7 @@ class ParkingGarage {
 
 	public ParkingGarage() {
 		parkingSpots = new Car[capacity];
-	}
+	
 
 	public ParkingGarage(int setCapacity) {
 		capacity = setCapacity;
