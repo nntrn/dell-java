@@ -64,36 +64,37 @@ To access members defined within the class, you need to create **objects**.
 
 
 ##### terminology
+```java
+class Lamp {
+  boolean isOn;
 
-    class Lamp {
-      boolean isOn;
+  void turnOn() {
+    isOn = true;
+  }
 
-      void turnOn() {
-        isOn = true;
-      }
-
-      void turnOff() {
-        isOn = false;
-      }
-      
-      void displayLightStatus() {
-        System.out.println("Light on? " + isOn);
-      }
-    }
+  void turnOff() {
+    isOn = false;
+  }
+  
+  void displayLightStatus() {
+    System.out.println("Light on? " + isOn);
+  }
+}
 
 
-    class ClassObjectsExample {
-    public static void main(String[] args) {
-      
-      Lamp l1 = new Lamp(), l2 = new Lamp();
-      
-      l1.turnOn();
-      l2.turnOff();
-      
-      l1.displayLightStatus();
-      l2.displayLightStatus();
-      }
-    }
+class ClassObjectsExample {
+public static void main(String[] args) {
+  
+  Lamp l1 = new Lamp(), l2 = new Lamp();
+  
+  l1.turnOn();
+  l2.turnOff();
+  
+  l1.displayLightStatus();
+  l2.displayLightStatus();
+  }
+}
+```
 
 <details>
 
@@ -109,6 +110,15 @@ To access members defined within the class, you need to create **objects**.
 
 </details>
 
+## Creating an Object
+
+There are three steps when creating an object from a class −
+
+**Declaration** − A variable declaration with a variable name with an object type.
+
+**Instantiation** − The 'new' keyword is used to create the object.
+
+**Initialization** − The 'new' keyword is followed by a call to a constructor. This call initializes the new object.
 
 ## References:
 * [Java Class and Objects](https://www.programiz.com/java-programming/class-objects)

@@ -1,5 +1,8 @@
 # bookmarks
 
+basic:
+* [Organizing Your Development Environment](http://cs.lmu.edu/~ray/notes/largejavaapps/)
+
 testing: 
 * [J Unit Testing](http://junit.sourceforge.net/doc/testinfected/testing.htm)
 * [J Unit docs](https://junit.org/junit5/docs/current/user-guide/)
