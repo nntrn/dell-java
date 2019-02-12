@@ -1,24 +1,34 @@
 
-
 public class CarLotProgram {
 	public static void main(String args[]) {
-		
-		Car c1 = new Car(),c2 = new Car(),c3 = new Car();
-		Truck t1 = new Truck(),t2 = new Truck(),t3 = new Truck();	
-		
-		c1.licenseNumber = "3j103";
-		
-		CarLot c = new CarLot("burnet");
-		
-		c.add(c1);
-		c.add(c2);
-		c.add(c3);
-		c.add(t1);
-		c.add(t2);
-		c.add(t3);
-		c.list();
-		
+
+		Car c1 = new Car();
+		Truck t1 = new Truck();
+
+		CarLot Lot1 = new CarLot("burnet");
+		CarLot Lot2 = new CarLot("highland mall");
+
+
+		c1.setLicense("MANUAL_INPUT_CAR");
+		t1.setLicense("MANUAL_INPUT_TRUCK");
+
+		Lot1.add(c1);
+		Lot1.add(t1);
+
+		for (int i = 0; i < 50; i++) {
+			Lot1.addRandom();
+			
+			Vehicle toAdd = i%2==0? new Car() : new Truck();
+			toAdd.setLicense(Lot2.randomLicense());
+			Lot2.add(toAdd);
+		}
+
+		Lot1.list();
+		Lot2.list();
+
 	}
+
+
 
 
 }
