@@ -1,11 +1,12 @@
 
 class Car extends Vehicle {
 	
-	public String type = "<type>";
-	public int doors = 4;
+	private String type = "<type>";
+	private int doors = 4;
 	
+	// car type is randomized at creation (not ideal for real life)
 	public Car(){
-	
+		setRandomType();
 	}
 	 
 	public Car(String license){
@@ -16,30 +17,20 @@ class Car extends Vehicle {
 		printDesc();
 	}
 	
+	/* add new fields here that you want printed with */
 	public String[] additionalInfo() {
-		String arr[] = {this.type, String.valueOf(this.doors) + "-doors"};
+		String arr[] = {"      "  + String.valueOf(this.doors) + "dr " + this.type};
 		return arr;
 	}
 	
-	public void setType(String type) {
-		if(type.contains("sedan"))
-			setSedan();
-		if(type.contains("coupe"))
-			setCoupe();
-		if(type.contains("hatchback"))
-			setHatchback();
-	}
-	
+	/* setters  ******************************/
 	public void setRandomType() {
 		
 		int random = (int)(Math.random() * 20 + 1);
 		
-		setSedan();
-		if(random % 5 == 0)
-			setCoupe();
-		if(random % 3 == 0)
-			setHatchback();
-		
+		this.setSedan();
+		if(random % 5 == 0) { this.setCoupe(); }
+		if(random % 3 == 0) { this.setHatchback(); }
 	}
 	
 	public void setSedan() {
@@ -56,7 +47,5 @@ class Car extends Vehicle {
 		this.type = "Hatchback";
 		this.doors = ((int)(Math.random()*10+1)%2==0) ? 2 : 4;
 	}
-	
-
 	
 }

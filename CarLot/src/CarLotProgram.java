@@ -8,9 +8,8 @@ public class CarLotProgram {
 		CarLot Lot1 = new CarLot("burnet");
 		CarLot Lot2 = new CarLot("highland mall");
 
-
-		c1.setLicense("MANUAL_INPUT_CAR");
-		t1.setLicense("MANUAL_INPUT_TRUCK");
+		c1.setLicense("CAR-C1");
+		t1.setLicense("CAR-T1");
 
 		Lot1.add(c1);
 		Lot1.add(t1);
@@ -28,7 +27,5 @@ public class CarLotProgram {
 
 	}
 
-
-
-
 }
+

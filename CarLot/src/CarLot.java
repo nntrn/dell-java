@@ -3,18 +3,26 @@ import java.util.ArrayList;
 
 public class CarLot {
 	
-	private String name = "<CarLot.name>";
-	private List<Vehicle> lot;
-	private Vehicle addRandomVehicle;
+	String name = "<CarLot.name>";
+	List<Vehicle> lot;
+	Vehicle addRandomVehicle;
+	
+	String[] header = {
+			" id"+spaces(4,"id"), "type"+spaces(8,"type"), 
+			"plate"+spaces(8,"plate"), "make"+spaces(10,"make"), 
+			"model"+spaces(10,"model"), "price"+spaces(10,"price"), "bed"+spaces(6,"bed"),
+			"door/type"};
 	
 	public CarLot() {
-		this.lot = new ArrayList<Vehicle>();
+		this.lot = new ArrayList<>();
 	}
 	
 	public CarLot(String name) {
 		this.name = name;
 		this.lot = new ArrayList<>();
 	}
+	
+	/* adding vehicles ***************************************/
 	
 	public void add(Vehicle addVehicle) {
 		lot.add(addVehicle);	
@@ -25,51 +33,56 @@ public class CarLot {
 		int random = (int)(Math.random() * 200 + 1);		
 		addRandomVehicle = (random%2 == 0) ? new Car() : new Truck();
 	
-		if(addRandomVehicle.licenseNumber.indexOf("<")> -1)
-			addRandomVehicle.setLicense(randomLicense());
-		
-		if(addRandomVehicle.model.indexOf("<")> -1)
-			randomMakeModel(addRandomVehicle);
-		
-		if(addRandomVehicle.price == 0)
-			addRandomVehicle.setPrice((int)((double)(Math.random() * 1 + .75)*1e4));
-
-		if(addRandomVehicle.model.indexOf("<")> -1)
-			addRandomVehicle.setRandomType();
-		//TO DO SET RANDOM TYPE
+		addRandomVehicle.setLicense(randomLicense());
+		randomMakeModel(addRandomVehicle);
+		addRandomVehicle.setPrice((int)((double)(Math.random() * 1 + .75)*1e4));
 		
 		add(addRandomVehicle);
-		
+				
 	}
 	
+	/* print table ***************************************/
 	public void list() {
 	
 		int counter = 1;
-
 		System.out.println("\nCAR LOT: \n" +  this.name);
-		printLines("-",50);
+		System.out.println(dashes(80));
+
+		for (String a : header) { System.out.print(a); }
 		
+		System.out.print("\n"+dashes(80)+"\n");
+
 		for(Vehicle vehicle:lot) {
-			System.out.print(counter++ + " ");
+			System.out.print(spaces(3, String.valueOf(counter)) + counter++ + spaces(2,""));
 			vehicle.print();
 			System.out.print( "\n");
 		}
 		
-		printLines("-",50);
-		System.out.println("number of vehicles: " + lot.size());
+		System.out.println(dashes(80) + "\nnumber of vehicles: " + lot.size());
 		
 	}
 	
-	public void printLines(String str, int num) {
-		
-		String strToPrint = str;
-		
-		 for(int i=0;i<num;i++)
-			 strToPrint+= str;
-		 
-		 System.out.println(strToPrint);
-		 
+	/* formatting  ***************************************/
+	
+	public String dashes(int num) {
+		String dash = "";
+		for (int i = 0; i < num; i++) { dash += "-";
+		}
+		return dash;
 	}
+	
+	public String spaces(int num, String str) {
+
+		String sp = "";
+		int spaces = num;
+
+		if (str != "") { spaces = num - str.length(); }
+		for (int i = 0; i < spaces; i++) { sp += " "; }
+
+		return sp;
+	}
+	
+	/* random data  ***************************************/
 	
 	public String randomLicense() {
 
@@ -85,7 +98,10 @@ public class CarLot {
 	
 	public void randomMakeModel(Vehicle veh) {
 		
-		String[][] car = new String [][] { 
+		// format:
+		// [CAR MAKE] [CAR MODEL] [CAR MODEL] [TRUCK MODEL][TRUCK MODEL]
+		
+		String[][] car = new String[][] { 
 			{ "NISSAN", "ALTIMA", "MAXIMA", "FRONTIER", "TITAN"},
             { "TOYOTA", "COROLLA","CAMRY", "TUNDRA","TACOMA"},
             { "FORD", "MUSTANG","FOCUS", "F150 LARIAT","F150 XLT"}};
@@ -97,11 +113,13 @@ public class CarLot {
 			veh.setMake(car[rModel][0]);
 			veh.setModel(car[rModel][random]);
 		}
+		// +2 bc last two elements in arr are trucks
 		if(this.getClass().getName().toUpperCase().indexOf("TRUCK")>-1){
 			veh.setMake(car[rModel][0]);
-			veh.setModel(car[rModel][random+2]);
-			
+			veh.setModel(car[rModel][random+2]); 
 		}
 	}
-	
 }
+
+
+
