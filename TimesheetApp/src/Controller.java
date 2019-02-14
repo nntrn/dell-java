@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.List;
 
 public class Controller {
@@ -6,11 +7,14 @@ public class Controller {
 	
     Timesheet timesheet;
     ConsoleUtils consoleUtils;
+	FileBackTimesheet fileTimesheet;
+
     
     /* Constructor */
     
     public Controller(){
         this.timesheet = new Timesheet();
+        this.fileTimesheet = new FileBackTimesheet();
         this.consoleUtils = new ConsoleUtils();
     }
     
@@ -31,7 +35,7 @@ public class Controller {
 	        this.timesheet.add("nntrn", "consectetur adipiscing elit");
 	        this.timesheet.add("mspagon", "dolor sit amet, consectetur");
 	        this.timesheet.add("nntrn", "Lorem ipsum dolor sit amet");
-	        this.timesheet.add("reallyreallylong", "Lorem ipsum dolor sit amet");
+	        this.timesheet.add("test", "Lorem ipsum dolor sit amet");
 	        
 	        String testArr[][] = {
 	        		{"list"},
@@ -185,7 +189,8 @@ public class Controller {
         
         List<TimesheetEntry> list = timesheet.list(printActive, project);
         consoleUtils.printList(list);	
-        
+        List<String> flist = fileTimesheet.list();
+       
     }
 
 	/*
@@ -200,5 +205,6 @@ public class Controller {
         String description = consoleUtils.promptString("Task:");
 
         timesheet.add(project, description); 
+        fileTimesheet.add(project,description);
     }
 }

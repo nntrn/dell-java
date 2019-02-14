@@ -94,7 +94,11 @@ class Timesheet {
 			System.out.println("--note: spaces are not allowed and will be removed");
 		
 		TimesheetEntry newEntry = new TimesheetEntry(project.replace(" ", ""), task);
+		FileBackTimesheet f = new FileBackTimesheet();
+		
 		database.add(newEntry);
+		f.add(project, task);
+		
 		
 	}
 	public void delete(int id) {

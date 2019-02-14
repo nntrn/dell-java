@@ -56,6 +56,8 @@ public class ConsoleUtils {
         System.out.print(label+" ");
         return scanner.nextLine();
     }
+    
+    
 
 	/*
 	 * Prints a list of TimesheetEntry objects in a pretty table
