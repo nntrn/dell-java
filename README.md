@@ -8,8 +8,10 @@ view on [sourcegraph](https://sourcegraph.com/github.com/nntrn/dell-java@assignm
 * [Statistics](Statistics/src/Main.java)
 * [Grade Book](GradeBook/src/GradeBook.java)
 * [DriverLicense](DriverLicense/src/DriverLicense.java)
-
-
+* [Parking Garage](ParkingGarage/)
+* [Car Lots](CarLot/)
+* [Rentable](Rentable/)
+* 
 ----
 
 ## make java easier:

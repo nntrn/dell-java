@@ -6,7 +6,7 @@
 * Some exceptions are checked and some are unchecked. If a function might throw one or more checked exceptions, they must be listed in the function's ***throws*** clause.
 * Exceptions are objects; they are defined as ***classes*** (the class name is the name of the exception) that extend the Exception class.
 
-Catch exceptions using try blocks:
+Catch exceptions using `try` blocks:
 ```java
 try {
    // statements that might cause exceptions
@@ -23,7 +23,7 @@ try {
 }
 ```
 
-1.  Each catch clause specifies the type of one exception, and provides a name for it (similar to the way a function header specifies the type and name of a parameter). Java exceptions are objects, so the statements in a catch clause can refer to the thrown exception object using the specified name.
+1.  Each `catch` clause specifies the type of one exception, and provides a name for it (similar to the way a function header specifies the type and name of a parameter). Java exceptions are objects, so the statements in a catch clause can refer to the thrown exception object using the specified name.
 2.  The finally clause is optional.
 3.  In general, there can be one or more catch clauses. If there *is* a finally clause, there can be zero catch clauses.
 
