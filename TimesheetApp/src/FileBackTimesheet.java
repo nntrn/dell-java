@@ -4,7 +4,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileBackTimesheet{
+public class FileBackTimesheet extends Timesheet{
 
 	private String fileName;
 	private String updateTime; 
@@ -27,12 +27,7 @@ public class FileBackTimesheet{
 		
 		StringBuffer buffer = new StringBuffer();
 		
-		String endTime = entry.getEndTime()==null? " ," : entry.getEndTime().format(timeFormatter);
-		
-		buffer.append(updateTime);
-		buffer.append(" ");
-		buffer.append(command);
-		buffer.append("#\t");
+		buffer.append("\n"+updateTime + " " + command + "#\t");
 		
 		// add file details here
 		
@@ -45,11 +40,13 @@ public class FileBackTimesheet{
 		buffer.append(",");
 		buffer.append(entry.getProjectName());
 		buffer.append(",");
-		buffer.append(entry.getStartTime().format(timeFormatter));
+		buffer.append(entry.getTask());
 		buffer.append(",");
+		buffer.append(entry.getStartTime().toString());
+		buffer.append(",");
+		String endTime = entry.getEndTime()==null? " ," : entry.getEndTime().toString();
 		buffer.append(endTime);
-		//buffer.append(entry.getEndTime().format(timeFormatter));
-		buffer.append("\n");
+		// buffer.append("\n"); /* this doesn't show up on windows */
 		
 		return buffer.toString();
 	}
@@ -61,10 +58,10 @@ public class FileBackTimesheet{
 				
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file, true) );
-			String entryAsString = serialize(newEntry, "add");			
+			String entryAsString = serialize(newEntry, "add");		
 			writer.write(entryAsString);
+			writer.newLine();
 			writer.close();
-			
 		}
 		catch (Exception e){
 			//silent catch
@@ -74,11 +71,9 @@ public class FileBackTimesheet{
 	
 	public List<String> list()  {
 		
-
 		try {
 			File file = new File(fileName);
 			BufferedReader readTimesheet = new BufferedReader(new FileReader(file));
-			
 			
 			String st;
 			
@@ -89,6 +84,7 @@ public class FileBackTimesheet{
 				projectEntries = new ArrayList<>();
 				for(String entry:fileArr) {
 					projectEntries.add(entry);
+				
 				}
 				System.out.println(projectEntries);
 	

@@ -204,7 +204,7 @@ public class Controller {
         String project = consoleUtils.promptString("Project Name (one word only):");
         String description = consoleUtils.promptString("Task:");
 
-        timesheet.add(project, description); 
-        fileTimesheet.add(project,description);
+        //timesheet.add(project, description); 		
+        fileTimesheet.add(project,description); // TODO: the id is incrementing twice
     }
 }
