@@ -2,17 +2,18 @@ import java.text.DecimalFormat;
 
 public interface Rentable {
 
-    double dailyRate = 100;
+	final double defaultRate = 100;
+	double multiplier = 1;
+	double dailyRate = defaultRate;
     double days = 1;
-    final double defaultRate = 100;
     
     DecimalFormat money = new DecimalFormat("$0.00");
 
 	void setRate(double dailyRate);
-	void setRate();
+	void setRate(); // method for setting dailyRate back to default
 
     default double getPrice() {
-    	return getDailyRate() * days;
+    	return (dailyRate * multiplier) * days;
     }
     
     default double getDailyRate() {
@@ -20,7 +21,11 @@ public interface Rentable {
     }
     
     default String getDescription() {
-    	System.out.println(this.getClass().getSimpleName() + " price is " + money.format(getPrice()));
+    	System.out.println(
+    			this.getClass().getSimpleName() + 
+    			"\n total price: " + money.format(getPrice()) + 
+    			"\n daily rate: " + money.format(getDailyRate())
+    			);
         return this.getClass().getSimpleName() + " price is $" + getPrice();
     }
  

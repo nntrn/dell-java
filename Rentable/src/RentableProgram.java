@@ -20,11 +20,15 @@ public class RentableProgram {
 	    
 	    Rentable tool = new Tool();
 	    tool.getDescription(); 
-	    tool.setRate(308);   
+	    tool.setRate(140);   
 	    tool.getDescription();
 	    tool.setRate();   
 	    tool.getDescription();
-	 
+	    
+	    System.out.println("-----------");
+	    condo.getDescription();
+	    room.getDescription();
+	    tool.getDescription();
 	}
     
 
