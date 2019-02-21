@@ -1,32 +1,30 @@
-import java.text.DecimalFormat;
-
 public interface Rentable {
 
-	final double defaultRate = 100;
-	double multiplier = 1;
-	double dailyRate = defaultRate;
-    double days = 1;
-    
-    DecimalFormat money = new DecimalFormat("$0.00");
+	double dailyRate = 100;
+	double days = 1;
+	double rateMultiplier = 1;
 
-	void setRate(double dailyRate);
-	void setRate(); // method for setting dailyRate back to default
+	void setRate(double rate);
 
-    default double getPrice() {
-    	return (dailyRate * multiplier) * days;
-    }
-    
-    default double getDailyRate() {
-    	return dailyRate;
-    }
-    
-    default String getDescription() {
-    	System.out.println(
-    			this.getClass().getSimpleName() + 
-    			"\n total price: " + money.format(getPrice()) + 
-    			"\n daily rate: " + money.format(getDailyRate())
-    			);
-        return this.getClass().getSimpleName() + " price is $" + getPrice();
-    }
- 
-} 
+	default double getDailyRate() {
+		return dailyRate;
+	}
+
+	default double getPrice() {
+		return getDailyRate() * getDays();
+	}
+
+	default double getDays() {
+		return days;
+	}
+
+	default double[] getDescription() {
+
+		double[] arr = { 
+				getDailyRate(), 	// daily rate
+				getDailyRate() * 7, // weekly rate
+				getDailyRate() / 24, // hourly rate
+				getPrice() };
+		return arr;
+	}
+}
