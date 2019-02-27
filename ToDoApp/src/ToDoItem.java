@@ -5,20 +5,20 @@ public class ToDoItem {
 	/* Member variables */
 
 	private int id;
-	private String item;
+	private String description;
 	private String status;
 	private LocalDate dueDate;
 	private static int NEXTID = 1;
 
 	/* Constructor */
 
-	public ToDoItem(String newItem) {
-		this.item = newItem;
+	public ToDoItem(String newToDo) {
+		this.description = newToDo;
 		this.add();
 	}
 
-	public ToDoItem(String newItem, String date) {
-		this.item = newItem;
+	public ToDoItem(String newToDo, String date) {
+		this.description = newToDo;
 		this.add();
 		String arr[] = date.split("/");
 		setDueDate(i(arr[2]), i(arr[0]), i(arr[01]));
@@ -28,16 +28,15 @@ public class ToDoItem {
 
 	private void add() {
 		this.id = NEXTID++;
-		pendingTask();
-		printAddEntry();
+		setPendingTask();
 	}
 
 	public int getId() {
 		return this.id;
 	}
 
-	public String getItem() {
-		return this.item;
+	public String getDesc() {
+		return this.description;
 	}
 
 	public String getStatus() {
@@ -49,9 +48,9 @@ public class ToDoItem {
 	}
 
 	public String getDueDateStr() {
-		if (this.dueDate == null)
+		if (getDueDate() == null)
 			return "(none)";
-		return this.dueDate.toString();
+		return getDueDate().toString();
 	}
 
 	public void setDueDate(int year, int month, int day) {
@@ -64,32 +63,27 @@ public class ToDoItem {
 	}
 
 	public void checkIfOverdue() {
-		if (this.dueDate.isBefore(LocalDate.now()))
+		if (getDueDate().isBefore(LocalDate.now()))
 			if (getStatus().toLowerCase() != "completed")
-				overdueTask();
+				setOverdueTask();
 	}
 
-	public void completeTask() {
+	public void setCompleteTask() {
 		this.status = "Completed";
 	}
 
-	public void overdueTask() {
+	public void setOverdueTask() {
 		this.status = "Overdue";
 	}
 
-	public void pendingTask() {
+	public void setPendingTask() {
 		this.status = "Pending";
-	}
-
-	public void printAddEntry() {
-		System.out.print("\t--" + this.item + " has been added");
 	}
 
 	public int i(String s) {
 		return Integer.parseInt(s);
 	}
 
-	public String s(int i) {
-		return String.valueOf(i);
-	}
 }
+
+

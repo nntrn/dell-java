@@ -49,3 +49,29 @@ In addition, `Dao.java` should have the following methods:
     *   List to-do items by due date: Prompt the user for a due date, and the program should display all items due by that date.
     *   List overdue items: Display all items that are past the due date.
     *   Sort by due date: Display the items in order of due date (soonest first).
+
+
+<details>Test inputs
+
+	// TEST INPUTS ****************************
+		 this.database.add(new ToDoItem("Lorem ipsum", "1/2/2012"));
+		 this.database.add(new ToDoItem("dolor sit amet", "1/23/2019"));
+		 this.database.add(new ToDoItem("amet, consectetur", "4/2/2022"));
+		 this.database.add(new ToDoItem("adipiscing elit", "12/23/2012"));
+		 this.database.add(new ToDoItem("dolor sit amet", "4/23/2019"));
+		 this.database.add(new ToDoItem("dolor sit amet", "2/26/2019"));
+
+	        String testArr[][] = {
+	    		{"list"},
+	    		{"list", "pending"}, {"list", "completed"}, {"list", "overdue"},
+	    		{"4"}, {"5"}
+	    	};
+	        
+			processListAction(testArr[0]);
+			processStopAction(testArr[4][0]);
+			processStopAction(testArr[5][0]);
+			processListAction(testArr[0]);
+		
+	// *********************************************
+
+</details>
