@@ -16,6 +16,12 @@ public class ToDoItem {
 		this.description = newToDo;
 		this.add();
 	}
+	
+	public ToDoItem(String newToDo, LocalDate date) {
+		this.description = newToDo;
+		this.dueDate = date;
+		this.add();
+	}
 
 	public ToDoItem(String newToDo, String date) {
 		this.description = newToDo;
