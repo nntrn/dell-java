@@ -1,76 +1,70 @@
 import java.sql.Connection;
 import java.sql.Statement;
-import java.util.Scanner;
+import java.time.LocalDate;
 import java.sql.ResultSet;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class DAO extends Controller {
+public class DAO {
 
-	int NEXTID = 1; // FIXME
-	static Scanner sc = new Scanner(System.in);
+	Connection conn = null;
 
-	Controller database = new Controller();
+	public DAO() {
+		connect();
+	}
 
 	public void connect() {
-
-		Connection conn = null;
 		try {
 			String url = "jdbc:sqlite:database.db";
 			conn = DriverManager.getConnection(url);
-
-			createTable(conn);
-			add(conn);
-			list(conn);
-			delete(conn);
-
+			createTable();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-		} finally {
 			try {
-				if (conn != null) {
-					conn.close();
-				}
-			} catch (SQLException ex) {
-				System.out.println(ex.getMessage());
-			}
+				deleteTable(); // TODO delete this later maybe
+			} catch (SQLException e1) {
+			} // silent catch
 		}
-
 	}
 
-	public static void createTable(Connection conn) throws SQLException {
+	public void createTable() throws SQLException {
 		Statement stmt = conn.createStatement();
 		String sql = "CREATE TABLE IF NOT EXISTS todoitems "
-				+ "(id INT, description VARCHAR(50), status VARCHAR(25), due_date DATE DEFAULT NULL); ";
+				+ "(id INTEGER PRIMARY KEY AUTOINCREMENT, description VARCHAR(50), status VARCHAR(25), due_date DATE DEFAULT NULL); ";
 
 		stmt.execute(sql);
 		stmt.close();
 	}
 
-	public void deleteTable(Connection conn) throws SQLException {
-		System.out.println("Deleting the table ");
-
+	public void deleteTable() throws SQLException {
 		Statement stmt = conn.createStatement();
 		stmt.execute("DROP TABLE todoitems; ");
 		stmt.close();
+
+		System.out.println("[table deleted]");
 	}
 
-	public void add(Connection conn) throws SQLException {
+	public void add(String desc, LocalDate date) throws SQLException {
 
-		String description = promptString("add a new todo item");
-		PreparedStatement stmt = conn.prepareStatement("insert into todoitems values (?,?,?,?);");
+		String status = "Pending";
+		if (date != null && date.isBefore(LocalDate.now()))
+			status = "Overdue";
 
-		stmt.setInt(1, NEXTID++);
-		stmt.setString(2, description);
-		stmt.setString(3, "Pending");
-		stmt.setString(4, null);
+		PreparedStatement stmt = conn
+				.prepareStatement("INSERT INTO todoitems (description, status, due_date) VALUES(?, ?, ?);");
+
+		stmt.setString(1, desc);
+		stmt.setString(2, status);
+		stmt.setString(3, (date != null) ? date.toString() : null);
 		stmt.executeUpdate();
 		stmt.close();
 
+		System.out.println("--added");
 	}
 
-	public void list(Connection conn) throws SQLException {
+	public void list(String status) throws SQLException {
+		// TODO: RETURN TODO ITEMS BY STATUS
 
 		Statement stmt = conn.createStatement();
 		ResultSet rs = stmt.executeQuery("select * from todoitems where status = 'Pending'");
@@ -80,7 +74,7 @@ public class DAO extends Controller {
 			int id = rs.getInt("id"); // rs.getInt(1);
 			String description = rs.getString("description"); // rs.getString();
 
-			this.database.add(description);
+			// this.database.add(description);
 			System.out.println(id + " " + description);
 		}
 		rs.close();
@@ -88,29 +82,29 @@ public class DAO extends Controller {
 
 	}
 
-	public void update(Connection conn) throws SQLException {
+	public void update(int id) throws SQLException {
 		// TODO: include overdue
 
-		int id = database.promptInt("Enter the id to delete: ");
-		String nameInput = "Completed";
-
-		PreparedStatement stmt = conn.prepareStatement("update todoitems set status = ? where id = ?;");
-		stmt.setString(1, nameInput);
-		stmt.setInt(2, id);
-		stmt.executeUpdate();
-		stmt.close();
-
-	}
-
-	public void delete(Connection conn) throws SQLException {
-
-		int id = database.promptInt("Enter the id to delete: ");
-		PreparedStatement stmt = conn.prepareStatement("delete from todoitems where id = ? ");
+		PreparedStatement stmt = conn.prepareStatement("update todoitems set status = 'Completed' where id = ?;");
 
 		stmt.setInt(1, id);
 		stmt.executeUpdate();
 		stmt.close();
+		System.out.println("--updated");
+	}
 
+	public void delete(int id) throws SQLException {
+
+		PreparedStatement stmt = conn.prepareStatement("delete from todoitems where id = ? ");
+		stmt.setInt(1, id);
+		stmt.executeUpdate();
+		stmt.close();
+
+		System.out.println("--deleted");
+	}
+
+	public int i(String s) {
+		return Integer.parseInt(s);
 	}
 
 }

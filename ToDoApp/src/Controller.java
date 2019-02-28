@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,6 +15,41 @@ public class Controller {
 	public Controller() {
 		sc = new Scanner(System.in);
 		this.database = new ArrayList<>();
+		this.database2 = new DAO();
+	}
+
+	public void connect() throws SQLException {
+
+		printHelp();
+		boolean quit = false;
+		while (!quit) {
+
+			String input = promptString("command:").toLowerCase();
+
+			String[] actionParts = input.split(" ");
+			String action = actionParts[0].trim();
+
+			if (action.equals("add")) {
+				String desc = promptString("todo item desc:");
+				LocalDate date = (actionParts.length == 1) ? null : convertToDate(actionParts[1]);
+				database2.add(desc, date);
+			}
+
+			else if (action.equals("delete"))
+				database2.delete(i(actionParts[1]));
+
+			else if (action.equals("done"))
+				database2.update(i(actionParts[1]));
+
+			else if (action.equals("list")) {
+				String listStatus = (actionParts.length == 1) ? "all" : actionParts[1];
+				list(listStatus);
+			} else if (action.equals("quit"))
+				quit = true;
+
+			else if (action.equals("help"))
+				printHelp();
+		}
 	}
 
 	protected void printHelp() {
@@ -32,16 +69,6 @@ public class Controller {
 	String promptString(String label) {
 		System.out.print(label + "\n> ");
 		return sc.nextLine();
-	}
-
-	Integer promptInt(String label) {
-		System.out.print(label + "\n> ");
-		return sc.nextInt();
-	}
-
-	LocalDate promptDateStr(String label) {
-		System.out.print(label + "\n(format:MM/DD/YYYY)\n> ");
-		return convertToDate(sc.nextLine());
 	}
 
 	LocalDate convertToDate(String dateStr) {
