@@ -1,0 +1,30 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - GarageManager",
+      "request": "launch",
+      "mainClass": "GarageManager",
+      "projectName": "ParkingGarage"
+    },
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - GradeBook",
+      "request": "launch",
+      "mainClass": "GradeBook",
+      "projectName": "GradeBook"
+    },
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - TicTacToe",
+      "request": "launch",
+      "mainClass": "TicTacToe",
+      "projectName": "TicTacToe",
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "java",
+      "console": "integratedTerminal"
+    }
+  ]
+}

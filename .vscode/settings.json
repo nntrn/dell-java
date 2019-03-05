@@ -1,0 +1,11 @@
+{
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/bin": true,
+    "**/.project": true,
+    "**/.metadata": true,
+    "**/.recommenders": true,
+    "**/.settings": true,
+    "**/.factorypath": true
+  }
+}
