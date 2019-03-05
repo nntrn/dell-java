@@ -4,25 +4,16 @@ import java.util.List;
 
 public class InMemory {
 	private List<ToDoItem> database;
+	private String formatHeader = "\n%3S %-9S %-12S %-25S";
 	
 	public InMemory() {
 		this.database = new ArrayList<>();
 	}
 
-	public void add(String[] actionParts) {
-		String description = actionParts[0];
-		ToDoItem addItem = (actionParts.length == 1) ? new ToDoItem(description)
-				: new ToDoItem(description, actionParts[1]);
-		database.add(addItem);
-	}
-	
 	public void add(String desc, LocalDate date) {
 		ToDoItem addItem = new ToDoItem(desc, date);
-		database.add(addItem);
-	}
-
-	public void add(String desc) {
-		ToDoItem addItem = new ToDoItem(desc);
+		if(date!= null)
+			addItem.checkIfOverdue();
 		database.add(addItem);
 	}
 
@@ -31,17 +22,31 @@ public class InMemory {
 	 * Pending, Completing, Overdue
 	 */
 	public void list(String actionParts) {
-
-		String formatHeader = "\n%4S %-9S %-12S %-15S";
+		printTableHeader();
+		for (ToDoItem el : database) {
+			if( el.getStatus().toLowerCase().equals(actionParts) | actionParts == "all")
+				System.out.format(formatHeader, el.getId(), el.getStatus(), el.getDueDateStr(), el.getDesc());
+		}
+		System.out.format("\n " + dashes(51)+ "\n%51s", database.size() +" row(s)");
+	}
+	
+	public void printTableHeader() {
 		System.out.format(formatHeader, "ID", "STATUS", "DUE DATE", "DESCRIPTION");
-		System.out.format(formatHeader, dashes(2), dashes(8), dashes(10), dashes(15));
-
-		for (ToDoItem el : database)
-			System.out.format(formatHeader, el.getId(), el.getStatus(), el.getDueDateStr(), el.getDesc());
-
-		System.out.println("\n  " + dashes(40) + "\n  total: " + database.size());
+		System.out.format(formatHeader, dashes(2), dashes(8), dashes(10), dashes(25));
 	}
 
+	void update(int id) {
+		getToDo(id).setCompleteTask();
+	}
+
+	void delete(int id) {
+		database.remove(getToDo(id));
+	}
+	
+	void drop() {
+		this.database = new ArrayList<>();
+	}
+	
 	/*
 	 * find and return ToDoItem object using id
 	 */
@@ -53,21 +58,8 @@ public class InMemory {
 		System.out.println("--error: no entry with id " + id);
 		return null;
 	}
-
-	void update(int id) {
-		getToDo(id).setCompleteTask();
-	}
-
-	void delete(int id) {
-		database.remove(getToDo(id));
-	}
-
+	
 	private static String dashes(int length) {
 		return String.format("%" + length + "c", ' ').replace(' ', '-');
 	}
-
-	private int i(String s) {
-		return Integer.parseInt(s);
-	}
-
 }

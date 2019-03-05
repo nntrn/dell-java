@@ -1,42 +1,37 @@
 import java.util.Scanner;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
+/*
+ * easily switch between local array and database files by commenting either
+ * note: need to comment out unused database object (InMemory or DAO)
+ */
 public class Controller {
 
 	Scanner sc;
-	
-	/* easily switch between local array and database files
-	 * by commenting either InMemory or DAO classes */
-	
-	//InMemory database;	/* this.database = new InMemory(); */
-	DAO database; 			/* this.database = new DAO(); */
+	//InMemory database;
+	DAO database;
 
 	public Controller() {
 		sc = new Scanner(System.in);
-		
-		//this.database = new InMemory(); 	/* InMemory database; */
-		this.database = new DAO(); 			/* DAO database; */
+		//this.database = new InMemory();
+		this.database = new DAO();
 	}
 
 	public void connect() throws SQLException {
-
 		printHelp();
 		boolean quit = false;
+
 		while (!quit) {
-
-			String input = promptString("command:").toLowerCase();
-
+			String input = promptString("\n$command:").toLowerCase();
 			String[] actionParts = input.split(" ");
 			String action = actionParts[0].trim();
 
 			if (action.equals("add")) {
 				String desc = promptString("todo item desc:");
-				LocalDate date = (actionParts.length == 1) ? null : convertToDate(actionParts[1]);
+				LocalDate date = (actionParts.length == 1) ? 
+						null : convertToDate(actionParts[1]);
 				database.add(desc, date);
 			}
 
@@ -47,9 +42,15 @@ public class Controller {
 				database.update(i(actionParts[1]));
 
 			else if (action.equals("list")) {
-				String listStatus = (actionParts.length == 1) ? "all" : actionParts[1];
+				String listStatus = (actionParts.length == 1) ? 
+						"all" : actionParts[1];
 				database.list(listStatus);
-			} else if (action.equals("quit"))
+			}
+
+			else if (action.equals("drop"))
+				database.drop();
+
+			else if (action.equals("quit"))
 				quit = true;
 
 			else if (action.equals("help"))
@@ -58,13 +59,16 @@ public class Controller {
 	}
 
 	protected void printHelp() {
+		System.out.println(dashes(50));
 		System.out.println("Valid commands: ");
-		System.out.println("  list [STATUS]   optional status filter (Pending, Completed, Overdue)");
-		System.out.println("  add [DUE-DATE]  optional due date (MM/DD/YYYY)");
-		System.out.println("  done ID");
-		System.out.println("  delete ID");
+		System.out.println("  list [STATUS(<blank>|Pending|Completed|Overdue)]");
+		System.out.println("  add [DUE-DATE(MM/DD/YYYY)]");
+		System.out.println("  done [ID]");
+		System.out.println("  delete [ID]");
+		System.out.println("  drop table");
 		System.out.println("  help");
 		System.out.println("  quit");
+		System.out.println(dashes(50));
 		System.out.println();
 	}
 
@@ -72,10 +76,14 @@ public class Controller {
 	 * prompts the user to enter input returns the text entered by the user
 	 */
 	String promptString(String label) {
-		System.out.print(label + "\n> ");
+		System.out.print(label + "\n > ");
 		return sc.nextLine();
 	}
-
+	
+	/*
+	 * convert date string to LocalDate
+	 * string format: M/D/YYYY
+	 */
 	LocalDate convertToDate(String dateStr) {
 		int[] dateArr = Arrays.stream(dateStr.split("/")).mapToInt(Integer::parseInt).toArray();
 		try {
@@ -86,8 +94,12 @@ public class Controller {
 		}
 	}
 
+	/* misc methods */
+	
+	private static String dashes(int length) {
+		return String.format("%" + length + "c", ' ').replace(' ', '-');
+	}
 	private int i(String s) {
 		return Integer.parseInt(s);
 	}
-
 }
